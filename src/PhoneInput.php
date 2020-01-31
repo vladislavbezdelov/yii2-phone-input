@@ -22,6 +22,10 @@ class PhoneInput extends InputWidget
      * @var array Options of the JS-widget
      */
     public $jsOptions = [];
+	/**
+	 * @var bool
+	 */
+    public $autoFocus = true;
 
     public function init()
     {
@@ -49,7 +53,16 @@ JS;
     });
 })(jQuery);
 JS;
-            $this->view->registerJs($js);
+	        $this->view->registerJs($js);
+            $jsFocus = <<<JS
+window.onload = function() {
+		document.getElementById('$id').focus();
+	};
+JS;
+
+            if ($this->autoFocus) {
+	            $this->view->registerJs($jsFocus);
+            }
         }
     }
 
