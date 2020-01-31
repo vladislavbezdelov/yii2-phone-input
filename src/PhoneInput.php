@@ -65,12 +65,12 @@ JS;
 
             $jsOnlyNumbers = <<<JS
 document.getElementById('$id').addEventListener('keydown', function(event) {
-	return (key >= '0' && key <= '9')
-			|| key == '+'
-			|| key == 'Backspace'
-			|| key == 'Enter'
-			|| key == '('
-			|| key == ')';
+	return (event.key >= '0' && event.key <= '9')
+			|| event.key == '+'
+			|| event.key == 'Backspace'
+			|| event.key == 'Enter'
+			|| event.key == '('
+			|| event.key == ')';
 });
 JS;
             $this->view->registerJs($jsOnlyNumbers);
