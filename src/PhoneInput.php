@@ -27,8 +27,6 @@ class PhoneInput extends InputWidget
 	 */
     public $autoFocus = true;
 
-    public $options = ['onkeydown' => 'return onlyNumbers(event.key)'];
-
     public function init()
     {
         parent::init();
@@ -66,14 +64,14 @@ JS;
             }
 
             $jsOnlyNumbers = <<<JS
-function onlyNumbers(key) {
-		return (key >= '0' && key <= '9')
+document.getElementById('$id').addEventListener('keydown', function(event) {
+	return (key >= '0' && key <= '9')
 			|| key == '+'
 			|| key == 'Backspace'
 			|| key == 'Enter'
 			|| key == '('
 			|| key == ')';
-	}
+});
 JS;
             $this->view->registerJs($jsOnlyNumbers);
         }
