@@ -64,14 +64,13 @@ JS;
             }
 
             $jsOnlyNumbers = <<<JS
-document.getElementById('$id').addEventListener('keydown', function(event) {
+document.getElementById('$id').onkeydown = function(event) {
 	return (event.key >= '0' && event.key <= '9')
 			|| event.key == '+'
 			|| event.key == 'Backspace'
 			|| event.key == 'Enter'
 			|| event.key == '('
-			|| event.key == ')';
-});
+			|| event.key == ')';};
 JS;
             $this->view->registerJs($jsOnlyNumbers);
         }
